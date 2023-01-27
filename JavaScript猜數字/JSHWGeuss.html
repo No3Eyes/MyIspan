@@ -1,0 +1,354 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <style>
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        .form {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+            text-align: center;
+        }
+
+        .answer {
+            background-color: aqua;
+            color: red;
+        }
+
+        .main-box {
+            margin: 30px auto;
+            width: 500px;
+            height: 300px;
+            padding: 50px;
+            box-shadow: 5px 5px 10px #999;
+            border: 1px solid #fff;
+            text-align: center;
+        }
+
+        .main-box1 {
+            margin: 30px auto;
+            width: 500px;
+            height: 150px;
+            padding: 50px;
+            box-shadow: 5px 5px 10px #999;
+            border: 1px solid #fff;
+            text-align: center;
+        }
+
+        .message-pane {
+            width: 500px;
+            height: 200px;
+            overflow: auto;
+            margin: 10px auto;
+            color: blue
+        }
+    </style>
+    <title>終極密碼HW</title>
+</head>
+
+<body>
+    <div class="tab">
+        <button class="btn" onclick="OpenTab(event, 'Normal')">正常版</button>
+        <button class="btn" onclick="OpenTab(event, 'Advance')">進階版</button>
+    </div>
+
+
+    <div id="Normal" class="form">
+        <h3>請選擇五個不重複的數字</h3>
+        <div class="main-box1">
+            <script>
+                for (let i = 0; i < 10; i++) {
+                    document.write(`<input type="checkbox" value="${i}" id="ChK${i}" 
+                class="ChK" onclick="return checkNum(5)" style="cursor:pointer">
+                <label for="ChK${i}" class="Lb" style="cursor:pointer">${i}</label>
+                `)
+                }            
+            </script>
+            <button onclick="checkAns()" style="margin-left:5px; cursor: pointer;">確認</button>
+            <br>
+            <br>
+            <button onclick="seeAns()" style="cursor: pointer;">偷看答案</button>
+            <span class="answer" id="spA">
+                <script>
+                    var n = new Array();
+                    for (var i = 0; i < 5; i++) {
+                        n[i] = Math.floor(Math.random() * 10);
+                        for (var j = 0; j < i; j++) {
+                            while (n[j] === n[i]) {
+                                j = 0;
+                                n[i] = Math.floor(Math.random() * 10);
+                            }
+                        }
+                    }
+                    n.sort();
+                    function Restart() {
+                        for (var i = 0; i < 5; i++) {
+                            n[i] = Math.floor(Math.random() * 10);
+                            for (var j = 0; j < i; j++) {
+                                while (n[j] === n[i]) {
+                                    j = 0;
+                                    n[i] = Math.floor(Math.random() * 10);
+                                }
+                            }
+                        }
+                        document.getElementById("spA").innerHTML = "別偷看";
+                        document.getElementById("spA").style.color = "aqua";
+                        count=1;
+                        for(let i=0;i<10;i++){
+                            var ii=document.getElementById(`ChK${i}`);
+                            ii.checked=false;
+                        }
+                    }            
+                </script>
+            </span>
+            <br><br>
+            <button style="cursor: pointer;" onclick="Restart()">重啟遊戲</button>
+        </div>
+    </div>
+
+
+    <div id="Advance" class="form">
+        <h3>請選擇五個不重複的數字</h3>
+        <div class="main-box">
+            <script>
+                var chNum = new Array(-1, -1, -1, -1, -1);    //儲存下面combobox選擇結果的array
+                for (let i = 0; i < 5; i++) {           //生成五個選項為0~9的combobox
+                    document.write(`<select id="CB${i}" style="margin-left:3px;">
+                    <option selected="selected" disabled="disabled"  style='display: none' value=''></option>`);
+                    for (let j = 0; j < 10; j++) {
+                        document.write(`<option value="${j}" id="CB${i}${j}">${j}</option>`)
+                    }
+                    document.write(`</select>`);
+                }
+                for (let i = 0; i < 5; i++) {                   //讓此五個combobox不能選擇重複值
+                    document.getElementById(`CB${i}`).addEventListener(
+                        "change", function () {
+                            let x = parseInt(document.getElementById(`CB${i}`).selectedIndex) - 1;
+                            chNum[i] = x;
+                            for (let j = 0; j < 10; j++) {
+                                if (j != chNum[0] && j != chNum[1] && j != chNum[2] && j != chNum[3] && j != chNum[4]) {
+                                    document.getElementById(`CB${(i + 1) % 5}${j}`).disabled = false;
+                                    document.getElementById(`CB${(i + 2) % 5}${j}`).disabled = false;
+                                    document.getElementById(`CB${(i + 3) % 5}${j}`).disabled = false;
+                                    document.getElementById(`CB${(i + 4) % 5}${j}`).disabled = false;
+                                }
+                                else if (j != -1) {
+                                    document.getElementById(`CB${(i + 1) % 5}${j}`).disabled = true;
+                                    document.getElementById(`CB${(i + 2) % 5}${j}`).disabled = true;
+                                    document.getElementById(`CB${(i + 3) % 5}${j}`).disabled = true;
+                                    document.getElementById(`CB${(i + 4) % 5}${j}`).disabled = true;
+                                }
+                            }
+                        }
+                    )
+                }
+                var m = new Array();
+                for (var i = 0; i < 5; i++) {
+                    m[i] = Math.floor(Math.random() * 10);
+                    for (var j = 0; j < i; j++) {
+                        while (m[j] === m[i]) {
+                            j = 0;
+                            m[i] = Math.floor(Math.random() * 10);
+                        }
+                    }
+                }
+                document.write(`<button id="Btn2" style="margin-left:5px;">確認</button>`)
+
+                document.write(`<br><br><button id="BtnSee">偷看答案</button>
+                                <span id="spB" class="answer">別偷看</span>`)
+                document.getElementById("spB").style.color = "aqua";
+
+                var countBtnSee = 0;
+                document.getElementById("BtnSee").addEventListener("click",
+                    function () {
+                        spB = document.getElementById("spB");
+                        if (countBtnSee % 2 == 0) {
+                            spB.innerHTML = m;
+                            spB.style.color = "red";
+                        }
+                        else {
+                            spB.innerHTML = "別偷看";
+                            spB.style.color = "aqua";
+                        }
+                        countBtnSee++;
+                    }
+                )
+
+                document.write(`<br><br><div>猜測紀錄:</div>
+                                <div class="message-pane" id="GuessRecord"></div>`)
+
+
+                document.getElementById("GuessRecord").scroll(0, document.getElementById("GuessRecord").scrollHeight);
+
+                var record = new Array();
+                var c = "";
+                document.getElementById("Btn2").addEventListener("click",
+                    function () {
+                        var a = 0;
+                        var b = 0;
+                        var tt = true;
+                        for (let i = 0; i < chNum.length; i++) {
+                            if (chNum[i] == -1) { tt = false; }
+                        }
+                        if (tt) {
+                            for (let i = 0; i < 5; i++) {
+                                if (m[i] == chNum[i]) { a++; }
+                                for (let j = 0; j < 5; j++) {
+                                    if (m[i] == chNum[j]) { b++; }
+                                }
+                                record.push(chNum[i]);
+                            }
+
+                            if (a == 5) { alert("恭喜全答對!!"); }
+                            else { alert(`選取結果為${a}A ${b - a}B`); }
+
+                            console.log(`record: ${record}`);
+                            console.log(`record.length: ${record.length}`);
+
+                            c += `<div>` +
+                                `${chNum[0]} ${chNum[1]} ${chNum[2]} ${chNum[3]} ${chNum[4]}=>` +
+                                `${a}A${b - a}B</div>`;
+
+
+                            // for(let i=0;i<record.length/5;i++){
+                            //     c+=`<div>${chNum[i*5]},${chNum[i*5+1]},${chNum[i*5+2]},${chNum[i*5+3]},${chNum[i*5+4]}
+                            //         :       ${a}A${b - a}B</div>`
+                            //     d+=`${chNum[i*5]},${chNum[i*5+1]},${chNum[i*5+2]},${chNum[i*5+3]},${chNum[i*5+4]}
+                            //         :       ${a}A${b - a}B\n`
+                            // console.log(`${chNum[i*5]},${chNum[i*5+1]},${chNum[i*5+2]},${chNum[i*5+3]},${chNum[i*5+4]}
+                            //         :       ${a}A${b - a}B`)
+                            // }
+                            document.getElementById("GuessRecord").innerHTML = c;
+                        }
+                        else { alert("請選取五個數字"); }
+                    }
+                )
+                //document.getElementById("GuessRecord").innerHTML = "15248 1A2B"
+            </script>
+        </div>
+    </div>
+
+
+
+    <script>
+        document.getElementById('Normal').style.display = "block"
+        function OpenTab(e, x) {
+            var F, B;
+            F = document.getElementsByClassName("form");
+            for (let i = 0; i < F.length; i++) {
+                F[i].style.display = "none";
+            }
+            B = document.getElementsByClassName("btn");
+            for (let i = 0; i < B.length; i++) {
+                B[i].className = B[i].className.replace("active", "");
+            }
+            document.getElementById(x).style.display = "block";
+            e.currentTarget.className += "active";
+        }
+        function checkNum(n) {
+            var C = document.getElementsByClassName("ChK")
+            var L = document.getElementsByClassName("Lb");
+            var x = 0;
+            for (let i = 0; i < C.length; i++) {
+                if (C[i].checked) {
+                    x++;
+                    for (let j; j < L.length; j++) {
+                        L[i].style.color = "red";
+                        console.log(L[i]);
+                    }
+                }
+                if (x > n) {
+                    alert('請勿選取超過五個');
+                    return false;
+                }
+            }
+        }
+
+        let count = 0;
+        function seeAns() {         //偷看答案按鈕
+            if (count % 2 == 0) {
+                document.getElementById("spA").innerHTML = "別偷看";
+                document.getElementById("spA").style.color = "aqua";
+            }
+            else {
+                b = "";
+                for (var i = 0; i < n.length; i++) {
+                    b += n[i];
+                }
+                document.getElementById("spA").innerHTML = b;
+                document.getElementById("spA").style.color = "red";
+            }
+            count++;
+        }
+        seeAns();
+
+
+        function HowMany(a, b) {
+            var coun = 0;
+            for (let i = 0; i < a.length; i++) {
+                for (let j = 0; j < b.length; j++) {
+                    if (a[i] == b[j]) { coun += 1; }
+                }
+            }
+            return coun;
+        }
+
+        function WhoHit(a, b) {
+            var whic = ""
+            for (let i = 0; i < a.length; i++) {
+                for (let j = 0; j < b.length; j++) {
+                    if (a[i] == b[j]) { whic += a[i]; }
+                }
+            }
+            return whic;
+        }
+
+        function checkAns() {
+            var C = document.getElementsByClassName("ChK")
+            var x = 0;
+            var y = new Array();
+            for (let i = 0; i < C.length; i++) {
+                if (C[i].checked) {
+                    y[x] = C[i].value;
+                    x++;
+                }
+            }
+            for (let i = 0; i < y.length; i++) { console.log("y的第" + i + "項" + y[i]); }
+            if (x != 5) { alert("請選擇五個數字"); return false; }
+            else {
+                var Num = HowMany(n, y);
+                var who = WhoHit(n, y);
+                alert(`您選中了${Num}項，選中數字為:${who}`)
+            }
+        }
+    </script>
+</body>
+
+</html>
