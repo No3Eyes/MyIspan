@@ -1,0 +1,334 @@
+$tcolor0: #FFFACA
+$tcolor1: #FFD8A8
+$tcolor2: #FFA83E
+$tcolor3: #F38B0B
+$tcolor4: #C77613
+$tcolor5: #633700
+$tcolor6: #3F2300
+$tcolor7: #1E1100
+$ocolor1: #FFD76A
+$ocolor2: #FFCC3E
+$ocolor3: #C79713
+$ocolor4: #634900
+$pcolor1: #FFBDA8
+$pcolor2: #FF8E6A
+$pcolor3: #FF6C3E
+$pcolor4: #C73F13
+$pcolor5: #631800
+
+:root
+    --bs-primary: $tcolor2
+    --bs-secondary: #f65005
+    --bs-success: #198754
+    --bs-info: #0dcaf0
+    --bs-warning: #ffc107
+    --bs-danger: #dc3545
+    --bs-light: #f7f8fc
+    --bs-dark: $tcolor5
+
+// 字體顏色
+.text-primary
+    color: $tcolor2 !important
+
+.text-body
+    color: $tcolor3 !important
+
+.text-t3
+    color: $tcolor3
+
+.text-t4
+    color: $tcolor4
+
+.text-t6
+    color: $tcolor6
+
+.text-dark
+    color: $tcolor7
+
+.text-p2
+    color: $pcolor2
+
+.text-secondary
+    color: $pcolor3 !important
+    font-family: monospace
+    // font-size: 3rem
+    // text-shadow: #633700 1px 1px
+
+.text-p5
+    color: $pcolor5
+
+.text-o3
+    color: $ocolor3
+
+// 按鈕顏色
+.btn-primary
+    color: $tcolor4
+    background-color: $tcolor3
+    border-color: $tcolor3
+    &:hover
+        color: $tcolor0
+        background-color: $pcolor3
+        border-color: $pcolor3
+
+.btn-check:focus+.btn-primary,
+.btn-primary:focus
+    color: $tcolor5
+    background-color: $tcolor3
+    border-color: $ocolor3
+    box-shadow: 0 0 0 0.25rem $tcolor4
+
+.btn-check:checked +  .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle
+    color: $tcolor5
+    background-color: $tcolor3
+    border-color: $ocolor3
+
+.btn-check:checked + .btn-check:focus, .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus, .show > .btn-primary.dropdown-toggle:focus
+    box-shadow: 0 0 0 0.25rem $tcolor4
+    &:disabled, .btn-primary.disabled
+        color: $tcolor5
+        background-color: $tcolor3
+        border-color: $tcolor3
+
+.btn-outline-primary
+    color: $tcolor3 !important
+    border-color: $tcolor4 !important
+
+.btn-outline-primary:hover
+    color: $tcolor0
+    background-color: $ocolor2
+    border-color: $tcolor3
+
+.btn-check:focus + .btn-outline-primary, .btn-outline-primary:focus
+    box-shadow: 0 0 0 0.25rem $tcolor0
+
+.btn-check:checked + .btn-outline-primary, .btn-check:active + .btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show
+    color: $tcolor4
+    background-color: $tcolor1
+    border-color: $tcolor3
+
+.btn-check:checked + .btn-outline-primary:focus, .btn-check:active + .btn-outline-primary:focus, .btn-outline-primary:active:focus, .btn-outline-primary.active:focus, .btn-outline-primary.dropdown-toggle.show:focus
+    box-shadow: 0 0 0 0rem $tcolor0
+
+.btn-outline-primary:disabled, .btn-outline-primary.disabled
+    color: $pcolor1
+    background-color: transparent
+
+.btn-check:focus+.btn-primary,
+.btn-primary:focus
+    // color: $tcolor0
+    // color: white
+    background-color: $tcolor3
+    border-color: $ocolor1
+    box-shadow: 0 0 0 0.25rem $tcolor2
+
+// 下架按鈕
+.momo-off-shelve
+    border: none
+    // font-weight: 700
+    &:hover
+        transform: scale(1.2)
+        transition-duration: 0.4s
+
+// 客訂蛋糕表單
+.form-control:focus
+    color: rgba($tcolor7 ,1)
+    // background-color: $tcolor1
+    border-color: rgba($tcolor3 ,0.5)
+    outline: 0
+    box-shadow: 0 0 0 0.25rem rgba($tcolor4 ,0.3)
+.border-primary
+    border-color: $tcolor2 !important
+
+//陰影
+.momo-logoname
+    text-shadow: $tcolor5 1px 0 3px
+
+.momo-slogan
+    text-shadow: $pcolor4 1px 0 2px
+
+// productDeatil購買數量
+.momo-product-amount
+    &:focus
+        outline-color: $tcolor2
+
+// 產品後臺修改鍵
+.momo-btn-edit
+    &:hover
+        background-color: $pcolor1
+        color: $pcolor5
+    .news:hover
+        color: $tcolor4 !important
+
+// 購物車
+.momo-cart-border
+    border: 1px solid black
+
+    // 首頁下拉選單
+.dropdown-item
+    &:hover
+        background-color: $tcolor1
+    &:focus
+        background-color: $pcolor3
+
+//首頁輪播
+.carousel_img
+    weight: 1920px
+    height: 1080px
+
+//阿白留言板
+.accordion-button:not(.collapsed)
+    color: black
+    background-color: $tcolor0
+    box-shadow: inset 0 -1px 0 $pcolor1
+
+.accordion-button:focus
+    z-index: 3
+    border-color: black
+    outline: 0
+    box-shadow: 0 0 0 0.25rem $pcolor1
+
+//class1
+// .momo-class-img:hover
+//     transform: scale(1.2)
+//     transition-duration: 0.4s
+
+.news
+    &:hover
+        color: $tcolor3
+
+//連結
+a
+    color: $tcolor3
+    text-decoration: none
+    &:hover
+        color: $pcolor4
+        text-decoration: none
+
+//我設定的連結class
+.anchor-tag
+    color: $tcolor3
+    text-decoration: none
+    &:hover
+        color: $pcolor4
+        text-decoration: none
+
+// 背景
+.bg-primary
+    color: $pcolor3
+    text-decoration: none
+
+// 會員登入框框
+.momo-login-div-top
+    border-radius: 1rem 1rem 0 0
+.momo-border-radius
+    border-radius: 1rem 1rem
+.bg-t2
+    background-color: $tcolor2 !important
+.bg-t3
+    background-color: $tcolor3 !important
+
+// 會員
+.momo-card
+    border: 1px solid #FFF
+
+.momo-card-header
+    background-color: $tcolor3
+    border-radius: 1rem 1rem 0 0 !important
+    color: $tcolor0
+
+.momo-card-body
+    background-color: $tcolor1
+
+.momo-member-list-edit
+    background-color: $pcolor1
+    color: $pcolor5
+    &:focus
+        background-color: $tcolor3
+        color: $tcolor1
+        cursor: pointer
+
+// .momo-member-input
+// 會員註冊
+
+//productDetail
+.momo-pd-size
+    width: 5rem
+    padding: 0.3rem 0rem
+    margin: 2rem 1rem 1rem 1rem
+    border: 1px solid $pcolor4
+    border-radius: 0.6rem
+    color: $pcolor3
+    text-align: center
+    cursor: pointer
+    &:hover
+        cursor: pointer
+        background-color: $pcolor4
+        color: $tcolor0
+        box-shadow: 0 0 0 .05rem $pcolor4
+
+.momo-pd-size-active
+    background-color: $pcolor4
+    color: $tcolor0
+    box-shadow: 0 0 0 .05rem $pcolor4
+
+.momo-pd-tag
+    border: solid $pcolor3 2px
+
+.btn
+    &:focus,&:active
+        box-shadow: 0 0 0 .05rem $pcolor4
+        cursor: pointer
+        background-color: $pcolor4
+        color: $tcolor0
+
+.momo-navbar
+    padding: auto 1rem
+    .nav-item
+        &:hover
+            background-color: $tcolor1
+
+.momo-w90
+    width: 90px
+
+.momo-cate-btn
+    border-radius: 1rem
+
+.momo-pd-img
+    max-width: 300px
+
+.momo-menu-img
+    // width: 340px
+    height: 340px
+
+.momo-blog-img
+    width: 800px
+
+.fa-edit
+    cursor: pointer
+    color: $tcolor2
+    &:hover
+        color: $pcolor5
+
+.momo-menu-btn
+    cursor: pointer
+
+.momo-addCartBTN
+    border-radius: 1rem
+    margin: 30px 0
+
+.btn-danger,.btn-danger:focus
+    color: #fff
+    background-color: $pcolor4
+    border-color: $pcolor1
+    box-shadow: 0 0 0 .25rem rgba(225, 83, 97, 0.5)
+
+.accordion-button
+    font-size: 2rem
+
+.momo-cart-name
+    font-size: 1.4em
+
+.btn-close:focus
+    outline: 0
+    box-shadow: 0 0 0 .25rem rgba( $tcolor4,0.3)
+    opacity: 1

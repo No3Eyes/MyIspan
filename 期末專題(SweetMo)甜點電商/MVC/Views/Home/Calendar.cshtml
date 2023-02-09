@@ -1,0 +1,65 @@
+﻿    <!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-3 mb-3 animated slideInDown text-primary">烘焙教室時程</h1>
+        @*        <nav aria-label="breadcrumb animated slideInDown">
+        <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a class="text-body" href="#">首頁</a></li>
+        <li class="breadcrumb-item"><a class="text-body" href="#">甜嘴page<a></li>
+        </ol>
+        </nav>*@
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- 內容 Start -->
+<div class="container-xxl py-6">
+
+    <link rel="stylesheet" href="~/css/Calendar.css">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+
+                locale: 'zh-tw',
+                navLinks: true,
+                headerToolbar: {
+                    left: 'prev,next,today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+
+                // 建立活動事件,須連到資料庫才能完整
+                events: [
+                    {
+                        title: '手工提拉米蘇',
+                        start: '2023-02-06T13:00:00',
+                        end: '2023-02-10T17:00:00'
+                    },
+                    {
+                        title: '酒漬櫻桃黑森林',
+                        start: '2023-02-13T09:00:00',
+                        end: '2023-02-17T17:00:00'
+                    },
+                    {
+                        title: '檸檬瑪德蓮',
+                        start: '2023-02-20T15:00:00',
+                        end: '2023-02-24T17:00:00'
+                    }
+
+                ]
+
+            });
+            calendar.render();
+        });
+
+    </script>
+
+    <script src='~/js/Calendar.js'></script>
+
+    <div class="container-xxl py-6">
+        <div id='calendar'></div>
+    </div>
+</div>
+<!-- 內容 End -->
